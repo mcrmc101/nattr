@@ -1,5 +1,7 @@
 <?php
 
+use App\Livewire\Chat\CreateChat;
+use App\Livewire\Chat\ShowChat;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,4 +16,10 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+});
+
+
+Route::middleware('auth')->prefix('chat')->group(function ($router) {
+    $router->get('/create', CreateChat::class)->name('chat.create');
+    $router->get('/{chatId}', ShowChat::class)->name('chat.show');
 });
