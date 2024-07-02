@@ -2,7 +2,7 @@
     <form wire:submit="create">
         {{ $this->form }}
 
-        <x-filament::button type="submit">Send</x-filament::button>
+        <button type="submit" class="btn btn-primary w-full my-6">Send</button>
 
     </form>
 

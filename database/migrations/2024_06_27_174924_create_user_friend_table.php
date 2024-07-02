@@ -16,6 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->foreignUuid('user_id');
             $table->foreignUuid('friend_id');
+            $table->boolean('mute')->default(0);
         });
     }
 

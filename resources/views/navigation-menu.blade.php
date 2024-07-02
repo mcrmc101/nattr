@@ -15,6 +15,9 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('friend.add') }}" :active="request()->routeIs('friend.add')">
+                        Friends
+                    </x-nav-link>
                     <x-nav-link href="{{ route('chat.create') }}" :active="request()->routeIs('chat.create')">
                         Start a Chat
                     </x-nav-link>

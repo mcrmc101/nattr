@@ -4,6 +4,7 @@ namespace App\Livewire\Chat;
 
 use App\Models\Chat;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class ShowChat extends Component
@@ -17,6 +18,7 @@ class ShowChat extends Component
     }
 
     #[Layout('layouts.app')]
+    #[On('updateChat')]
     public function render()
     {
         return view('livewire.chat.show-chat');

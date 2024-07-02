@@ -20,4 +20,9 @@ class Chat extends Model
     {
         return $this->hasMany(Message::class);
     }
+
+    public function getParticipants()
+    {
+        return implode(', ', $this->users->pluck('name')->toArray());
+    }
 }

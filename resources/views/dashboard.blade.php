@@ -4,12 +4,10 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                <x-welcome />
-            </div>
-        </div>
-    </div>
+    <x-filament::section class="mb-6">
+        @include('partials.user-stats')
+    </x-filament::section>
+    <x-filament::section class="mb-6">
+        @livewire('chat.list-chats')
+    </x-filament::section>
 </x-app-layout>

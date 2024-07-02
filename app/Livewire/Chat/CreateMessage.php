@@ -2,6 +2,9 @@
 
 namespace App\Livewire\Chat;
 
+use App\Events\MessageCreated;
+use App\Livewire\Partials\AlertBanner;
+use App\Models\Chat;
 use App\Models\Message;
 use Filament\Forms;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -15,9 +18,10 @@ class CreateMessage extends Component implements HasForms
 {
     use InteractsWithForms;
 
-    public $chatId;
+    public $chatId = null;
 
     public ?array $data = [];
+
 
     public function mount(): void
     {
@@ -28,10 +32,10 @@ class CreateMessage extends Component implements HasForms
     {
         return $form
             ->schema([
-                Forms\Components\Textarea::make('content')
+                Forms\Components\RichEditor::make('content')->disableToolbarButtons(['attachFiles'])
                     ->required()
                     ->columnSpan(2),
-                SpatieMediaLibraryFileUpload::make('avatar')
+                SpatieMediaLibraryFileUpload::make('images')
 
             ])->columns(3)
             ->statePath('data')
@@ -42,11 +46,34 @@ class CreateMessage extends Component implements HasForms
     {
         $data = $this->form->getState();
         $record = new Message();
-        $record->chat_id = $this->chatId;
+        if ($this->chatId) {
+            $record->chat_id = $this->chatId;
+        } else {
+            $record->chat_id = $this->createChat();
+        }
         $record->user_id = auth()->user()->id;
         $record->content = $data['content'];
         $record->save();
         $this->form->model($record)->saveRelationships();
+        MessageCreated::dispatch($record);
+        if ($this->chatId) {
+            $this->dispatch('updateChat')->to(ShowChat::class);
+        } else {
+            $this->dispatch('createChat', $record->chat_id)->to(CreateChat::class);
+        }
+        $this->form->fill();
+        /*
+        $this->dispatch('alertBanner', data: [
+            'status' => 'success',
+            'statusMessage' => 'Post created',
+        ])->to(AlertBanner::class);
+        */
+    }
+
+    public function createChat()
+    {
+        $chat = Chat::create();
+        return $chat->id;
     }
 
     public function render(): View
