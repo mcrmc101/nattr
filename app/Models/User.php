@@ -96,4 +96,9 @@ class User extends Authenticatable
         $friend->friends()->detach($this->id);
         return true;
     }
+
+    public function pushSubscription()
+    {
+        return $this->hasOne(PushSubscription::class);
+    }
 }

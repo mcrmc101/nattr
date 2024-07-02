@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('push_subscriptions', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('user_id')->constrained()->onDelete('cascade');
+            $table->foreignUuid('user_id');
             $table->string('endpoint')->unique();
-            $table->string('public_key');
-            $table->string('auth_token');
+            $table->string('public_key')->nullable();
+            $table->string('auth_token')->nullable();
             $table->timestamps();
         });
     }

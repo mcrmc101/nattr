@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class PushSubscription extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'endpoint',
+        'public_key',
+        'auth_token'
+    ];
 }

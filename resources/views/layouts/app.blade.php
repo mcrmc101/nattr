@@ -41,6 +41,7 @@
         @endif
         @livewire('partials.alert-banner')
         @livewire('show-notification')
+        @livewire('partials.push-notification-subscription')
         <!-- Page Content -->
         <main>
             <div class="container min-h-screen mx-auto px-4 py-6">
