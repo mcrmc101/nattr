@@ -32,7 +32,7 @@ class PushNotificationSubscription extends Component
         PushSubscription::updateOrCreate(
             ['endpoint' => $endpoint],
             [
-                'user_id' => auth()->id(),
+                'user_id' => auth()->user()->id(),
                 'public_key' => $key,
                 'auth_token' => $token,
             ]

@@ -52,12 +52,13 @@
             await navigator.serviceWorker.ready;
 
             const subscription = await subscribeUserToPush(registration);
-
+            console.log(susbscription.endpoint)
             await @this.subscribe(
                 subscription.endpoint,
                 btoa(String.fromCharCode.apply(null, new Uint8Array(subscription.getKey('p256dh')))),
                 btoa(String.fromCharCode.apply(null, new Uint8Array(subscription.getKey('auth'))))
             );
+
 
             console.log('Push notification subscription successful');
         } catch (error) {

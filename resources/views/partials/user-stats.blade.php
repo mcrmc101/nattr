@@ -1,8 +1,8 @@
-<div class="stats shadow mx-auto">
+<div class="stats stats-vertical md:stats-horizontal w-fit shadow mx-auto">
     <div class="stat place-items-center">
         <div class="stat-figure text-primary">
             <div class="avatar">
-                <div class="w-24 rounded-full">
+                <div class="w-16 rounded-full">
                     <img src="{{ auth()->user()->profile_photo_url }}" alt="{{ auth()->user()->name }} profile photo">
                 </div>
             </div>

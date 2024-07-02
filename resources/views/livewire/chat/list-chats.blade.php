@@ -1,4 +1,4 @@
-    <div class="grid grid-cols-1 md:grid-cols-4">
+    <div class="flex flex-col md:flex-row">
         @forelse ($chats as $chat)
             <div class="bg-base-100 shadow hover:shadow-xl m-2">
                 <a href="{{ route('chat.show', $chat->id) }}">
